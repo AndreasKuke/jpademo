@@ -1,6 +1,7 @@
 package app;
 
 
+import app.dao.PersonDAO;
 import app.entities.Person;
 
 public class Main {

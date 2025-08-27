@@ -13,6 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Person {
     @Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -57,11 +57,13 @@ public class StudentDAO {
     public List<Student> findByCourseId(int courseId){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query q = em.createQuery("from Student where id = :courseId");
-        q.setParameter("courseId", courseId);
-        List<Student> students = q.getResultList();
-        em.getTransaction().commit();
-        em.close();
-        return students;
+        try{
+            return em.createQuery("SELECT s from Student s where s.courseId.id = :courseId", Student.class)
+                    .setParameter("courseId",courseId)
+                    .getResultList();
+        }finally {
+            em.close();
+        }
+
     }
 }

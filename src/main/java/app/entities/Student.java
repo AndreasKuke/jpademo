@@ -1,7 +1,6 @@
 package app.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -13,8 +12,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Student {
     @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     String name;
@@ -31,5 +32,11 @@ public class Student {
 
     LocalDate dateOfEnrollment;
 
-    Integer courseId;
+    @ManyToOne
+            @JoinColumn(
+                    name = "course_id",
+                    referencedColumnName = "id",
+                    foreignKey = @ForeignKey(name = "fk_student_course")
+            )
+    Course courseId;
 }

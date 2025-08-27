@@ -1,4 +1,5 @@
 package app.entities;
 
-public class Point {
+public class Course {
+
 }
